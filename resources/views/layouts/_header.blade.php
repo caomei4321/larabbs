@@ -40,33 +40,24 @@
                             </span>
                             {{ Auth::user()->name }} <span class="caret"></span>
                         </a>
-
-                        <ul class="dropdown-menu" role="menu">
-                            <li>
-                                <a href="{{ route('users.show', Auth::id()) }}">
-                                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('users.show', Auth::id()) }}">
+                                    <i class="far fa-user mr-2"></i>
                                     个人中心
                                 </a>
-                            </li>
-                            <li>
-                                <a href="{{ route('users.edit', Auth::id()) }}">
-                                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="{{ route('users.edit', Auth::id()) }}">
+                                    <i class="far fa-edit mr-2"></i>
                                     编辑资料
                                 </a>
-                            </li>
-                            <li>
-                                <a href="{{ route('logout') }}"
-                                   onclick="event.preventDefault();
-                                             document.getElementById('logout-form').submit();">
-                                    <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
-                                    退出登录
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" id="logout" href="#">
+                                    <form action="{{ route('logout') }}" method="POST" onsubmit="return confirm('您确定要退出吗？');">
+                                        {{ csrf_field() }}
+                                        <button class="btn btn-block btn-danger" type="submit" name="button">退出</button>
+                                    </form>
                                 </a>
-
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                    {{ csrf_field() }}
-                                </form>
-                            </li>
-                        </ul>
+                            </div>
                     </li>
                 @endguest
             </ul>
